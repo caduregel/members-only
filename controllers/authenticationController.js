@@ -19,6 +19,7 @@ const post_sign_up = asyncHandler(async (req, res, next) => {
             await db.createUser(req.body.username, hashedPassword)
         }
       });
+      res.redirect('/')
 })
 
 
