@@ -6,6 +6,7 @@ const indexRouter = require('./routes/indexRouter')
 const session = require('express-session');
 const passport = require("./passport/passport.config")
 const { body, validationResult } = require("express-validator");
+const { errController } = require("./controllers/errController");
 
 const app = express();
 app.set("views", path.join(__dirname, "views"));
@@ -15,9 +16,7 @@ app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use('/', indexRouter)
-
-
-
+app.use(errController)
 
 // Tell app to listen on PORT
 const PORT = 3000 ;

@@ -17,9 +17,13 @@ async function getUserByID(id) {
     const {rows} = await pool.query("SELECT * FROM users WHERE id = $1;", [id])
     return rows
 }
+async function enterClubHouse(id){
+    await pool.query("UPDATE users SET in_club_house = TRUE WHERE id = $1;", [id])
+}
 
 module.exports = {
     createUser,
     getUserByUsername,
-    getUserByID
+    getUserByID,
+    enterClubHouse
 };
