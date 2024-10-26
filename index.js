@@ -5,6 +5,7 @@ const express = require("express");
 const indexRouter = require('./routes/indexRouter')
 const session = require('express-session');
 const passport = require("./passport/passport.config")
+
 const { body, validationResult } = require("express-validator");
 const { errController } = require("./controllers/errController");
 

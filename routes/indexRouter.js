@@ -8,8 +8,7 @@ const { enter_club } = require("../controllers/enterClubController");
 const indexRouter = Router();
 
 indexRouter.get("/", (req, res) => {
-  console.log(req.user)
-  res.render('index', { user: req.user })
+    res.render('index', { user: req.user})
 })
 
 // Main Page, should show login screen with option to sign up if not logged in already

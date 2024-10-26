@@ -8,17 +8,15 @@ async function createUser(username, password) {
     ]);
 }
 
-async function getUserByUsername(name){
-    const {rows} = await pool.query("SELECT * FROM users WHERE username = $1;", [name])
-    return rows
+async function getUserByUsername(username) {
+    const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
+    const user = rows[0];
+    return user
 }
-
 async function getUserByID(id) {
-    const {rows} = await pool.query("SELECT * FROM users WHERE id = $1;", [id])
-    return rows
-}
-async function enterClubHouse(id){
-    await pool.query("UPDATE users SET in_club_house = TRUE WHERE id = $1;", [id])
+    const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+    const user = rows[0];
+    return user
 }
 
 module.exports = {
