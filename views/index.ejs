@@ -2,25 +2,43 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 
 <body>
-    <% if (locals.user) {%>
         <h1>WELCOME BACK <%= user.username %>
         </h1>
-        <a href="/log-out">LOG OUT</a>
-            <% } else { %>
-                <h1>please log in</h1>
-                <form action="/log-in" method="POST">
-                    <label for="username">Username</label>
-                    <input id="username" name="username" placeholder="username" type="text" />
-                    <label for="password">Password</label>
-                    <input id="password" name="password" type="password" />
-                    <button>Log In</button>
-                </form>
-                <% } %>
+        <h1>Posts</h1>
+        <a href="/new">Create new message</a><br>
+        <a href="/enter">Become a club member!</a>
+        <% posts.forEach(post=> { %>
+            <div>
+                <h2>
+                    <%= post.title %>
+                </h2>
+                <p><strong>Author:</strong>
+                    <% if(inClub) { %>
+                        <%= post.author %>
+                            <% } else {%>
+                                <p>*******</p>
+                                <%}%>
+                </p>
+                <p>
+                    <%= post.content %>
+                </p>
+                <p><em>Date Added:</em>
+                    <% if(inClub) { %>
+                        <%= post.added.toDateString() %>
+                        <% } else {%>
+                                <p>*******</p>
+                                <%}%>
+                </p>
+            </div>
+            <% }) %>
+                </ul>
+                <a href="/log-out">LOG OUT</a>
+
 
 </body>
 

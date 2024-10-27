@@ -19,9 +19,26 @@ async function getUserByID(id) {
     return user
 }
 
+async function enterClubHouse(id) {
+    await pool.query("UPDATE users SET in_club_house = TRUE WHERE id = $1;", [id])
+}
+
+async function createNewMessage(authorName, title, content, date){
+    await pool.query("INSERT INTO messages (author, title, content, added) VALUES ($1, $2, $3, $4)", [
+        authorName, title, content, date
+    ])
+}
+
+async function getAllMessages(){
+    const {rows} = await pool.query("SELECT * FROM messages");
+    return rows
+}
+
 module.exports = {
     createUser,
     getUserByUsername,
     getUserByID,
-    enterClubHouse
+    enterClubHouse,
+    createNewMessage,
+    getAllMessages
 };

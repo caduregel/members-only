@@ -7,7 +7,7 @@ const enter_club = asyncHandler(async (req, res, next) => {
         next(new Error("No user"))
     }
     if (req.body.code == "skibidi") {
-        db.enterClubHouse(req.user[0].id)
+        db.enterClubHouse(req.user.id)
     } else {
         res.render("enterClub", { badAttempt: true })
     }
