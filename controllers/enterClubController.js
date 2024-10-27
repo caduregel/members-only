@@ -8,6 +8,7 @@ const enter_club = asyncHandler(async (req, res, next) => {
     }
     if (req.body.code == "skibidi") {
         db.enterClubHouse(req.user.id)
+        res.redirect('/')
     } else {
         res.render("enterClub", { badAttempt: true })
     }
